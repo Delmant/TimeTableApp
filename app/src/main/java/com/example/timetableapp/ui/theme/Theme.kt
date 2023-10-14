@@ -15,22 +15,26 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Color.White,
+    primary = Color(0xFF171717),
+    onPrimary = Color.White,
     secondary = Color(0xFF0174F3),
     onSecondary = Color(0xFFA3A3A3),
     tertiary = Pink80,
     background = Color(0xFF171717),
+    onBackground = Color(0xFF171717)
 
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = Color.White,
+    onPrimary = Color.Black,
     secondary = Color(0xFF0174F3),
     onSecondary = Color(0xFFA3A3A3),
     tertiary = Pink80,
-    background = Color(0xFF171717),
+    background = Color.White,
 //    primary = Color.Black,
 //    secondary = PurpleGrey40,
 //    tertiary = Pink40,
@@ -68,6 +72,8 @@ fun TimeTableAppTheme(
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }
+
+
 
     MaterialTheme(
         colorScheme = colorScheme,
