@@ -4,8 +4,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -135,7 +137,13 @@ fun TextField(label: String, onDoneClickListener: () -> Unit) {
         value = text,
 //        modifier = Modifier.fillMaxWidth(),
         onValueChange = { text = it },
-        label = { Text(text = label, color = MaterialTheme.colorScheme.onPrimary, fontSize = 12.sp) },
+        label = {
+            Text(
+                text = label,
+                color = MaterialTheme.colorScheme.onPrimary,
+                fontSize = 12.sp
+            )
+        },
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
         keyboardActions = KeyboardActions(
             onDone = {
@@ -166,4 +174,9 @@ fun AppIcon() {
             Image(painter = painterResource(id = R.drawable.logo), contentDescription = null)
         }
     }
+}
+
+@Composable
+fun SpaceHeight20dp() {
+    Spacer(modifier = Modifier.height(20.dp))
 }
