@@ -177,6 +177,62 @@ fun AppIcon() {
 }
 
 @Composable
-fun SpaceHeight20dp() {
+fun SpacerHeight20dp() {
     Spacer(modifier = Modifier.height(20.dp))
+}
+
+@Composable
+fun SpacerHeight10dp() {
+    Spacer(modifier = Modifier.height(10.dp))
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ExposedDropDownMenu() {
+
+    var isExpanded by remember { mutableStateOf(false) }
+    var item by remember { mutableStateOf("выбрать") }
+
+    ExposedDropdownMenuBox(
+        expanded = isExpanded,
+        onExpandedChange = { isExpanded = !isExpanded }) {
+        androidx.compose.material3.TextField(
+            value = item,
+            onValueChange = {},
+            readOnly = true,
+            trailingIcon = {
+                ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded)
+            },
+            modifier = Modifier.menuAnchor(),
+            shape = RoundedCornerShape(
+                topStart = 10.dp,
+                topEnd = 10.dp,
+                bottomStart = 10.dp,
+                bottomEnd = 10.dp
+            ),
+            colors = TextFieldDefaults.textFieldColors(
+                focusedIndicatorColor = Color.Transparent, // Цвет индикатора в фокусе
+                unfocusedIndicatorColor = Color.Transparent, // Цвет индикатора вне фокуса
+                disabledIndicatorColor = Color.Transparent, // Цвет индикатора при выключенном состоянии
+            )
+        )
+
+        ExposedDropdownMenu(
+            expanded = isExpanded,
+            onDismissRequest = { isExpanded = false }) {
+            DropdownMenuItem(text = { Text(text = "БП1-111") }, onClick = {
+                item = "БП1-111"
+                isExpanded = false
+            })
+            DropdownMenuItem(text = { Text(text = "БП2-222") }, onClick = {
+                item = "БП2-222"
+                isExpanded = false
+            })
+            DropdownMenuItem(text = { Text(text = "БП3-333") }, onClick = {
+                item = "БП3-333"
+                isExpanded = false
+            })
+        }
+    }
+
 }
