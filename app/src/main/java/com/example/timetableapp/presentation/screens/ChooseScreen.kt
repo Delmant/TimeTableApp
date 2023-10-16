@@ -1,4 +1,4 @@
-package com.example.timetableapp.presentation.screens.welcome_screen
+package com.example.timetableapp.presentation.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -12,10 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.timetableapp.presentation.components.AppIcon
-import com.example.timetableapp.presentation.components.ButtonWithoutIcon
-import com.example.timetableapp.presentation.components.GradientMediumText
-import com.example.timetableapp.presentation.components.RegularText
+import com.example.timetableapp.presentation.screens.components.AppIcon
+import com.example.timetableapp.presentation.screens.components.ButtonWithoutIcon
+import com.example.timetableapp.presentation.screens.components.GradientMediumText
+import com.example.timetableapp.presentation.screens.components.RegularText
 import com.example.timetableapp.ui.theme.TimeTableAppTheme
 
 @Composable

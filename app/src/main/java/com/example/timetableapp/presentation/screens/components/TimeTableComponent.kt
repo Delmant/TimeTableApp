@@ -1,24 +1,32 @@
-package com.example.timetableapp.presentation.components
+package com.example.timetableapp.presentation.screens.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -135,7 +143,13 @@ fun TextField(label: String, onDoneClickListener: () -> Unit) {
         value = text,
 //        modifier = Modifier.fillMaxWidth(),
         onValueChange = { text = it },
-        label = { Text(text = label, color = MaterialTheme.colorScheme.onPrimary, fontSize = 12.sp) },
+        label = {
+            Text(
+                text = label,
+                color = MaterialTheme.colorScheme.onPrimary,
+                fontSize = 12.sp
+            )
+        },
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
         keyboardActions = KeyboardActions(
             onDone = {
@@ -166,4 +180,65 @@ fun AppIcon() {
             Image(painter = painterResource(id = R.drawable.logo), contentDescription = null)
         }
     }
+}
+
+@Composable
+fun SpacerHeight20dp() {
+    Spacer(modifier = Modifier.height(20.dp))
+}
+
+@Composable
+fun SpacerHeight10dp() {
+    Spacer(modifier = Modifier.height(10.dp))
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ExposedDropDownMenu() {
+
+    var isExpanded by remember { mutableStateOf(false) }
+    var item by remember { mutableStateOf("выбрать") }
+
+    ExposedDropdownMenuBox(
+        expanded = isExpanded,
+        onExpandedChange = { isExpanded = !isExpanded }) {
+        androidx.compose.material3.TextField(
+            value = item,
+            onValueChange = {},
+            readOnly = true,
+            trailingIcon = {
+                ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded)
+            },
+            modifier = Modifier.menuAnchor(),
+            shape = RoundedCornerShape(
+                topStart = 10.dp,
+                topEnd = 10.dp,
+                bottomStart = 10.dp,
+                bottomEnd = 10.dp
+            ),
+            colors = TextFieldDefaults.textFieldColors(
+                focusedIndicatorColor = Color.Transparent, // Цвет индикатора в фокусе
+                unfocusedIndicatorColor = Color.Transparent, // Цвет индикатора вне фокуса
+                disabledIndicatorColor = Color.Transparent, // Цвет индикатора при выключенном состоянии
+            )
+        )
+
+        ExposedDropdownMenu(
+            expanded = isExpanded,
+            onDismissRequest = { isExpanded = false }) {
+            DropdownMenuItem(text = { Text(text = "БП1-111") }, onClick = {
+                item = "БП1-111"
+                isExpanded = false
+            })
+            DropdownMenuItem(text = { Text(text = "БП2-222") }, onClick = {
+                item = "БП2-222"
+                isExpanded = false
+            })
+            DropdownMenuItem(text = { Text(text = "БП3-333") }, onClick = {
+                item = "БП3-333"
+                isExpanded = false
+            })
+        }
+    }
+
 }
