@@ -1,22 +1,21 @@
-package com.example.timetableapp.presentation.screens.welcome_screen
+package com.example.timetableapp.presentation.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import com.example.timetableapp.presentation.components.AppIcon
-import com.example.timetableapp.presentation.components.ButtonWithoutIcon
-import com.example.timetableapp.presentation.components.GradientMediumText
-import com.example.timetableapp.presentation.components.RegularText
-import com.example.timetableapp.presentation.components.TextField
+import com.example.timetableapp.presentation.screens.components.AppIcon
+import com.example.timetableapp.presentation.screens.components.ButtonWithoutIcon
+import com.example.timetableapp.presentation.screens.components.ExposedDropDownMenu
+import com.example.timetableapp.presentation.screens.components.GradientMediumText
+import com.example.timetableapp.presentation.screens.components.RegularText
+import com.example.timetableapp.presentation.screens.components.SpacerHeight20dp
+import com.example.timetableapp.presentation.screens.components.TextField
 
 @Composable
 fun ChooseStudentScreen(
@@ -36,11 +35,9 @@ fun ChooseStudentScreen(
         ) {
             RegularText(text = "Отлично!")
             GradientMediumText(text = "Осталось только указать твою группу")
-            Spacer(modifier = Modifier.height(20.dp))
-            TextField("Группа") {
-
-            }
-            Spacer(modifier = Modifier.height(20.dp))
+            SpacerHeight20dp()
+            ExposedDropDownMenu()
+            SpacerHeight20dp()
             ButtonWithoutIcon(text = "\uD83D\uDCBCНачать") {
                 onApplyClickListener()
             }
