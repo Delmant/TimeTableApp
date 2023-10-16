@@ -12,7 +12,10 @@ fun AppNavGraph(
     welcomeScreenContent: @Composable () -> Unit,
     chooseStudentScreenContent: @Composable () -> Unit,
     chooseTeacherScreenContent: @Composable () -> Unit,
-    homeScreenContent: @Composable () -> Unit
+    homeScreenTeacherContent: @Composable () -> Unit,
+    homeScreenStudentContent: @Composable () -> Unit,
+    groupAndDateSelectionContent: @Composable () -> Unit,
+    groupSelectionContent: @Composable () -> Unit
 ) {
     NavHost(
         navController = navHostController,
@@ -31,8 +34,20 @@ fun AppNavGraph(
                 chooseTeacherScreenContent()
             }
 
-            composable(Screen.HomeScreen.route, ) {
-                homeScreenContent()
+            composable(Screen.HomeScreenTeacher.route) {
+                homeScreenTeacherContent()
+            }
+
+            composable(Screen.HomeScreenStudent.route) {
+                homeScreenStudentContent()
+            }
+
+            composable(Screen.GroupAndDateSelectionScreen.route) {
+                groupAndDateSelectionContent()
+            }
+
+            composable(Screen.DateSelectionScreen.route) {
+                groupSelectionContent()
             }
         })
 }
