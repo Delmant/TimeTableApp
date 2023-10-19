@@ -6,6 +6,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.timetableapp.presentation.navigation.AppNavGraph
 import com.example.timetableapp.presentation.navigation.Screen
 import com.example.timetableapp.presentation.navigation.rememberNavigationState
+import com.example.timetableapp.presentation.screens.home.HomeScreenStudent
+import com.example.timetableapp.presentation.screens.home.HomeScreenTeacher
+import com.example.timetableapp.presentation.screens.timetable.TimetableScreen
 
 @OptIn(ExperimentalFoundationApi::class)
 @Preview
@@ -50,10 +53,23 @@ fun WelcomeScreen() {
             )
         },
         groupAndDateSelectionContent = {
-            GroupAndDateSelectionScreen()
+            GroupAndDateSelectionScreen(
+                showTimetableClickListener = {
+                    navigationState.navigateTo(Screen.TimetableScreen.route)
+                }
+            )
         },
         groupSelectionContent = {
-            DateSelectionScreen()
+            DateSelectionScreen(showTimetableClickListener = {
+                navigationState.navigateTo(Screen.TimetableScreen.route)
+            })
+        },
+        timetableContent = {
+            TimetableScreen(
+                onBackPressClickListener = {
+                    navigationState.navHostController.popBackStack()
+                }
+            )
         })
 
 }

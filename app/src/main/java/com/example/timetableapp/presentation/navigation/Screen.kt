@@ -30,6 +30,10 @@ sealed class Screen(val route: String) {
         route = ROUTE_DATE_SELECTION_SCREEN
     )
 
+    object TimetableScreen: Screen(
+        route = ROUTE_TIMETABLE_SCREEN
+    )
+
     companion object {
         private const val ROUTE_WELCOME_SCREEN = "route_welcome_screen"
         private const val ROUTE_CHOOSE_STUDENT_SCREEN = "route_choose_student_screen"
@@ -38,5 +42,6 @@ sealed class Screen(val route: String) {
         private const val ROUTE_HOME_SCREEN_TEACHER = "route_home_screen_teacher"
         private const val ROUTE_GROUP_AND_DATE_SELECTION_SCREEN = "route_group_and_date_selection_screen"
         private const val ROUTE_DATE_SELECTION_SCREEN = "route_date_selection_screen"
+        private const val ROUTE_TIMETABLE_SCREEN = "route_timetable_screen"
     }
 }
