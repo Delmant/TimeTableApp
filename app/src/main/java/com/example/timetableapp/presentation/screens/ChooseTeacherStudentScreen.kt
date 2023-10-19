@@ -9,12 +9,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.timetableapp.presentation.screens.components.AppIcon
-import com.example.timetableapp.presentation.screens.components.ButtonWithoutIcon
-import com.example.timetableapp.presentation.screens.components.GradientMediumText
-import com.example.timetableapp.presentation.screens.components.RegularText
-import com.example.timetableapp.presentation.screens.components.SpacerHeight20dp
-import com.example.timetableapp.presentation.screens.components.TextField
+import com.example.timetableapp.presentation.screens.shared_components.AppIcon
+import com.example.timetableapp.presentation.screens.shared_components.ButtonWithoutIcon
+import com.example.timetableapp.presentation.screens.shared_components.GradientMediumText
+import com.example.timetableapp.presentation.screens.shared_components.RegularText
+import com.example.timetableapp.presentation.screens.shared_components.SpacerHeight20dp
+import com.example.timetableapp.presentation.screens.shared_components.TextField
 
 @Composable
 fun ChooseTeacherScreen(

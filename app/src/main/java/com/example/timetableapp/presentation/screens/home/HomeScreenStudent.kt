@@ -1,4 +1,4 @@
-package com.example.timetableapp.presentation.screens
+package com.example.timetableapp.presentation.screens.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -9,11 +9,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.timetableapp.presentation.navigation.Screen
-import com.example.timetableapp.presentation.screens.components.AppIcon
-import com.example.timetableapp.presentation.screens.components.ButtonWithoutIcon
-import com.example.timetableapp.presentation.screens.components.GradientSmallText
-import com.example.timetableapp.presentation.screens.components.SpacerHeight20dp
+import com.example.timetableapp.presentation.screens.shared_components.AppIcon
+import com.example.timetableapp.presentation.screens.shared_components.ButtonWithoutIcon
+import com.example.timetableapp.presentation.screens.shared_components.GradientSmallText
+import com.example.timetableapp.presentation.screens.shared_components.SpacerHeight20dp
 
 @Composable
 fun HomeScreenStudent(
