@@ -12,10 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.timetableapp.presentation.screens.components.AppIcon
-import com.example.timetableapp.presentation.screens.components.ButtonWithoutIcon
-import com.example.timetableapp.presentation.screens.components.GradientMediumText
-import com.example.timetableapp.presentation.screens.components.RegularText
+import com.example.timetableapp.presentation.screens.shared_components.AppIcon
+import com.example.timetableapp.presentation.screens.shared_components.ButtonWithoutIcon
+import com.example.timetableapp.presentation.screens.shared_components.GradientMediumText
+import com.example.timetableapp.presentation.screens.shared_components.RegularText
 import com.example.timetableapp.ui.theme.TimeTableAppTheme
 
 @Composable

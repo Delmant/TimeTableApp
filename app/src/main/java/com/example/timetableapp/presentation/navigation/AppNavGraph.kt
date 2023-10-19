@@ -15,7 +15,8 @@ fun AppNavGraph(
     homeScreenTeacherContent: @Composable () -> Unit,
     homeScreenStudentContent: @Composable () -> Unit,
     groupAndDateSelectionContent: @Composable () -> Unit,
-    groupSelectionContent: @Composable () -> Unit
+    groupSelectionContent: @Composable () -> Unit,
+    timetableContent: @Composable () -> Unit
 ) {
     NavHost(
         navController = navHostController,
@@ -48,6 +49,10 @@ fun AppNavGraph(
 
             composable(Screen.DateSelectionScreen.route) {
                 groupSelectionContent()
+            }
+
+            composable(Screen.TimetableScreen.route) {
+                timetableContent()
             }
         })
 }
