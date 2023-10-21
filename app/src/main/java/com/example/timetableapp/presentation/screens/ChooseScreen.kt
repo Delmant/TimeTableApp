@@ -13,9 +13,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.timetableapp.presentation.screens.shared_components.AppIcon
-import com.example.timetableapp.presentation.screens.shared_components.ButtonWithoutIcon
 import com.example.timetableapp.presentation.screens.shared_components.GradientMediumText
 import com.example.timetableapp.presentation.screens.shared_components.RegularText
+import com.example.timetableapp.presentation.screens.shared_components.buttons.GradientButton
 import com.example.timetableapp.ui.theme.TimeTableAppTheme
 
 @Composable
@@ -39,11 +39,11 @@ fun ChooseScreen(
                 GradientMediumText(text = "расписание")
                 GradientMediumText(text = "на каждый день")
                 Spacer(modifier = Modifier.height(12.dp))
-                ButtonWithoutIcon("\uD83E\uDDD1 Я студент") {
+                GradientButton("\uD83E\uDDD1 Я студент") {
                     onStudentClickListener()
                 }
 
-                ButtonWithoutIcon("\uD83E\uDDD1 Я преподаватель") {
+                GradientButton("\uD83E\uDDD1 Я преподаватель") {
                     onTeacherClickListener()
                 }
             }
