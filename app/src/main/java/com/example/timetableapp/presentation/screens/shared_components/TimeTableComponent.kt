@@ -1,4 +1,4 @@
-package com.example.timetableapp.presentation.screens.components
+package com.example.timetableapp.presentation.screens.shared_components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -66,6 +67,15 @@ fun RegularText(text: String) {
 }
 
 @Composable
+fun RegularSmallText(text: String) {
+    Text(
+        text = text,
+        style = MaterialTheme.typography.titleSmall,
+        textAlign = TextAlign.Center
+    )
+}
+
+@Composable
 fun GradientMediumText(text: String) {
     Text(
         text = text,
@@ -84,7 +94,7 @@ fun GradientMediumText(text: String) {
 }
 
 @Composable
-fun GradientSmallText(text: String) {
+fun GradientAlmostMediumText(text: String) {
     Text(
         text = text,
         textAlign = TextAlign.Center,
@@ -102,35 +112,24 @@ fun GradientSmallText(text: String) {
 }
 
 @Composable
-fun ButtonWithoutIcon(text: String, buttonClickListener: () -> Unit) {
-    Button(
-        modifier = Modifier.fillMaxWidth(),
-        onClick = { buttonClickListener() },
-        colors = ButtonDefaults.buttonColors(Color.Transparent)
-    ) {
-        Box(
-            modifier = Modifier
-                .clip(CircleShape)
-                .fillMaxWidth()
-                .background(
-                    brush = Brush.horizontalGradient(
-                        listOf(
-                            colorResource(id = R.color.font_blue),
-                            colorResource(id = R.color.purple)
-                        )
-                    )
+fun GradientSmallText(text: String) {
+    Text(
+        text = text,
+        textAlign = TextAlign.Center,
+        fontFamily = FontFamily(Font(R.font.lack_regular)),
+        fontSize = 16.sp,
+        style = TextStyle(
+            brush = Brush.linearGradient(
+                colors = listOf(
+                    colorResource(id = R.color.font_blue),
+                    colorResource(id = R.color.purple)
                 )
-                .padding(8.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = text,
-                color = Color.White,
-                fontSize = 16.sp
             )
-        }
-    }
+        )
+    )
 }
+
+
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -182,63 +181,4 @@ fun AppIcon() {
     }
 }
 
-@Composable
-fun SpacerHeight20dp() {
-    Spacer(modifier = Modifier.height(20.dp))
-}
 
-@Composable
-fun SpacerHeight10dp() {
-    Spacer(modifier = Modifier.height(10.dp))
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun ExposedDropDownMenu() {
-
-    var isExpanded by remember { mutableStateOf(false) }
-    var item by remember { mutableStateOf("выбрать") }
-
-    ExposedDropdownMenuBox(
-        expanded = isExpanded,
-        onExpandedChange = { isExpanded = !isExpanded }) {
-        androidx.compose.material3.TextField(
-            value = item,
-            onValueChange = {},
-            readOnly = true,
-            trailingIcon = {
-                ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded)
-            },
-            modifier = Modifier.menuAnchor(),
-            shape = RoundedCornerShape(
-                topStart = 10.dp,
-                topEnd = 10.dp,
-                bottomStart = 10.dp,
-                bottomEnd = 10.dp
-            ),
-            colors = TextFieldDefaults.textFieldColors(
-                focusedIndicatorColor = Color.Transparent, // Цвет индикатора в фокусе
-                unfocusedIndicatorColor = Color.Transparent, // Цвет индикатора вне фокуса
-                disabledIndicatorColor = Color.Transparent, // Цвет индикатора при выключенном состоянии
-            )
-        )
-
-        ExposedDropdownMenu(
-            expanded = isExpanded,
-            onDismissRequest = { isExpanded = false }) {
-            DropdownMenuItem(text = { Text(text = "БП1-111") }, onClick = {
-                item = "БП1-111"
-                isExpanded = false
-            })
-            DropdownMenuItem(text = { Text(text = "БП2-222") }, onClick = {
-                item = "БП2-222"
-                isExpanded = false
-            })
-            DropdownMenuItem(text = { Text(text = "БП3-333") }, onClick = {
-                item = "БП3-333"
-                isExpanded = false
-            })
-        }
-    }
-
-}
