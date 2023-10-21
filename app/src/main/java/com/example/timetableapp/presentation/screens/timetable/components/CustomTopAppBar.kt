@@ -16,8 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.timetableapp.R
-import com.example.timetableapp.presentation.screens.shared_components.SpacerHeight10dp
-import com.example.timetableapp.presentation.screens.shared_components.WhiteFont26SP
+import com.example.timetableapp.presentation.screens.shared_components.spacer.SpacerHeight10dp
 import com.example.timetableapp.ui.theme.MainBlue
 
 @Composable

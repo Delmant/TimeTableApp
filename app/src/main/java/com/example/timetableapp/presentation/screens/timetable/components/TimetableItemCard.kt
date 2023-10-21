@@ -20,9 +20,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.timetableapp.presentation.screens.shared_components.GradientSmallText
-import com.example.timetableapp.presentation.screens.shared_components.SpacerWidth20dp
-import com.example.timetableapp.presentation.screens.shared_components.WhiteFont12SP
-import com.example.timetableapp.presentation.screens.shared_components.WhiteFont16SP
+import com.example.timetableapp.presentation.screens.shared_components.spacer.SpacerWidth20dp
+import com.example.timetableapp.presentation.screens.shared_components.text.WhiteFont12SP
+import com.example.timetableapp.presentation.screens.shared_components.text.WhiteFont16SP
 
 @Preview
 @Composable

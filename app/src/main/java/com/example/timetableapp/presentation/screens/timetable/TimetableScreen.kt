@@ -12,10 +12,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.timetableapp.presentation.screens.shared_components.SpacerHeight20dp
-import com.example.timetableapp.presentation.screens.shared_components.WhiteFont26SP
-import com.example.timetableapp.presentation.screens.timetable.components.TimetableItemCard
+import com.example.timetableapp.presentation.screens.shared_components.spacer.SpacerHeight20dp
+import com.example.timetableapp.presentation.screens.shared_components.text.WhiteFont26SP
 import com.example.timetableapp.presentation.screens.timetable.components.CustomTopAppBar
+import com.example.timetableapp.presentation.screens.timetable.components.TimetableItemCard
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

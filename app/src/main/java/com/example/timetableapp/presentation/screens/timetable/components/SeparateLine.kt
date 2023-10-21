@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.timetableapp.presentation.screens.shared_components.SpacerHeight10dp
+import com.example.timetableapp.presentation.screens.shared_components.spacer.SpacerHeight10dp
 
 @Composable
 fun SeparateLine() {
