@@ -1,4 +1,4 @@
-package com.example.timetableapp.presentation.screens.shared_components
+package com.example.timetableapp.presentation.screens.shared_components.text
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,7 +25,7 @@ fun WhiteFont16SP(text: String) {
     Text(
         text = text,
         textAlign = TextAlign.Center,
-        fontFamily = FontFamily(Font(R.font.lack_regular)),
+        fontFamily = FontFamily(Font(R.font.montserrat_medium)),
         fontSize = 16.sp,
         color = Color.White
     )
@@ -36,7 +36,7 @@ fun WhiteFont12SP(text: String) {
     Text(
         text = text,
         textAlign = TextAlign.Center,
-        fontFamily = FontFamily(Font(R.font.lack_regular)),
+        fontFamily = FontFamily(Font(R.font.montserrat_medium)),
         fontSize = 12.sp,
         color = Color.White
     )
@@ -47,7 +47,18 @@ fun WhiteFont26SP(text: String) {
     Text(
         text = text,
         textAlign = TextAlign.Center,
-        fontFamily = FontFamily(Font(R.font.lack_regular)),
+        fontFamily = FontFamily(Font(R.font.montserrat_medium)),
+        fontSize = 26.sp,
+        color = Color.White
+    )
+}
+
+@Composable
+fun WhiteFontTitle(text: String) {
+    Text(
+        text = text,
+        textAlign = TextAlign.Center,
+        fontFamily = FontFamily(Font(R.font.montserrat_bold)),
         fontSize = 26.sp,
         color = Color.White
     )
