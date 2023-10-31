@@ -35,24 +35,15 @@ fun AppNavGraph(
                 chooseTeacherScreenContent()
             }
 
-            composable(Screen.HomeScreenTeacher.route) {
-                homeScreenTeacherContent()
-            }
-
             composable(Screen.HomeScreenStudent.route) {
                 homeScreenStudentContent()
             }
 
-            composable(Screen.GroupAndDateSelectionScreen.route) {
-                groupAndDateSelectionContent()
-            }
-
-            composable(Screen.DateSelectionScreen.route) {
-                groupSelectionContent()
-            }
-
-            composable(Screen.TimetableScreen.route) {
-                timetableContent()
-            }
+            teacherHomeScreenNavGraph(
+                homeScreenTeacherContent = homeScreenTeacherContent,
+                groupSelectionContent = groupSelectionContent,
+                groupAndDateSelectionContent = groupAndDateSelectionContent,
+                timetableContent = timetableContent
+            )
         })
 }
