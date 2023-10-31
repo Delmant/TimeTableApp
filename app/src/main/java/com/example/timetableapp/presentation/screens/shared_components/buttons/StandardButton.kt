@@ -31,17 +31,13 @@ fun StandardButton(
     buttonClickListener: () -> Unit
 ) {
     Button(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(CircleShape)
-            .padding(paddingValues),
+        modifier = Modifier.fillMaxWidth().padding(paddingValues),
         onClick = { buttonClickListener() },
+        colors = ButtonDefaults.buttonColors(MainBlue)
     ) {
         Box(
-            modifier = Modifier
-                .background(
-                    color = MainBlue
-                ),
+            modifier = Modifier.clip(CircleShape)
+                .fillMaxWidth(),
             contentAlignment = Alignment.Center
         ) {
             Text(
