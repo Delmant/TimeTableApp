@@ -1,6 +1,7 @@
 package com.example.timetableapp.presentation.screens.home.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,9 +18,12 @@ import com.example.timetableapp.presentation.screens.shared_components.text.Whit
 import com.example.timetableapp.ui.theme.MainBlue
 
 @Composable
-fun DateItem() {
+fun DateItem(dateItemOnClickListener: () -> Unit) {
     Row {
         Card(
+            modifier = Modifier.clickable {
+                dateItemOnClickListener()
+            },
             shape = RoundedCornerShape(25.dp)
         ) {
             Box(
