@@ -8,14 +8,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun DateLazyRow() {
+fun DateLazyRow(dateItemOnClickListener: () -> Unit) {
     val lazyListState = rememberLazyListState()
     LazyRow(
         modifier = Modifier.padding(8.dp),
         state = lazyListState
     ) {
         items(20) {
-            DateItem()
+            DateItem { dateItemOnClickListener() }
         }
     }
 }
