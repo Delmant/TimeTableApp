@@ -1,6 +1,5 @@
 package com.example.timetableapp.presentation.screens.shared_components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -25,12 +24,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.timetableapp.R
 import com.example.timetableapp.ui.theme.MainBlue
-import com.example.timetableapp.ui.theme.PaleBlue
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExposedDropDownMenu(
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    listItems: List<String>,
+    onItemSelected: (String) -> Unit
 ) {
 
     var isExpanded by remember { mutableStateOf(false) }
@@ -75,26 +75,13 @@ fun ExposedDropDownMenu(
             modifier = Modifier.padding(paddingValues),
             expanded = isExpanded,
             onDismissRequest = { isExpanded = false }) {
-            DropdownMenuItem(
-                modifier = Modifier.padding(paddingValues),
-                text = { Text(text = "БП1-111") }, onClick = {
-                    item = "БП1-111"
+            listItems.forEach {
+                DropdownMenuItem(text = { Text(text = it) }, onClick = {
+                    item = it
                     isExpanded = false
+                    onItemSelected(it)
                 })
-            DropdownMenuItem(
-                modifier = Modifier.padding(paddingValues),
-                text = { Text(text = "БП2-222") },
-                onClick = {
-                    item = "БП2-222"
-                    isExpanded = false
-                })
-            DropdownMenuItem(
-                modifier = Modifier.padding(paddingValues),
-                text = { Text(text = "БП3-333") },
-                onClick = {
-                    item = "БП3-333"
-                    isExpanded = false
-                })
+            }
         }
     }
 

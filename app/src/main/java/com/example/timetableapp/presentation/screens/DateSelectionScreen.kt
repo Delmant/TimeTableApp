@@ -68,8 +68,17 @@ fun DateSelectionScreen(
                         start = 12.dp,
                         end = 12.dp,
                         bottom = 12.dp
+                    ),
+                    listOf(
+                        "1-FGF",
+                        "2-QGT",
+                        "3-QRG",
+                        "4-GCS",
+                        "5-VXS"
                     )
-                )
+                ) {
+
+                }
                 SpacerHeight20dp()
 
             }

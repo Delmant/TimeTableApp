@@ -1,4 +1,4 @@
-package com.example.timetableapp.presentation.screens
+package com.example.timetableapp.presentation.screens.choose
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

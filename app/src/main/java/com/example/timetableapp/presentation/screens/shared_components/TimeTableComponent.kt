@@ -140,7 +140,6 @@ fun TextField(label: String, onDoneClickListener: () -> Unit) {
     }
     OutlinedTextField(
         value = text,
-//        modifier = Modifier.fillMaxWidth(),
         onValueChange = { text = it },
         label = {
             Text(
