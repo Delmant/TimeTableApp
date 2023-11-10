@@ -9,7 +9,7 @@ import androidx.navigation.compose.composable
 @Composable
 fun AppNavGraph(
     navHostController: NavHostController,
-    welcomeScreenContent: @Composable () -> Unit,
+    hostScreenContent: @Composable () -> Unit,
     chooseStudentScreenContent: @Composable () -> Unit,
     chooseTeacherScreenContent: @Composable () -> Unit,
     homeScreenTeacherContent: @Composable () -> Unit,
@@ -24,7 +24,7 @@ fun AppNavGraph(
         builder = {
 
             composable(Screen.WelcomeScreen.route) {
-                welcomeScreenContent()
+                hostScreenContent()
             }
 
             composable(Screen.ChooseStudentScreen.route) {
