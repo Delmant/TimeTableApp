@@ -1,5 +1,6 @@
-package com.example.timetableapp.presentation.screens.home
+package com.example.timetableapp.presentation.screens.home.teacher
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,27 +13,63 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.timetableapp.domain.user_profile.model.UserProfile
 import com.example.timetableapp.presentation.screens.home.components.BackgroundCard
 import com.example.timetableapp.presentation.screens.home.components.DateLazyRow
 import com.example.timetableapp.presentation.screens.shared_components.AppIcon
+import com.example.timetableapp.presentation.screens.shared_components.ProgressIndicator
 import com.example.timetableapp.presentation.screens.shared_components.buttons.StandardButton
 import com.example.timetableapp.presentation.screens.shared_components.spacer.SpacerHeight20dp
 import com.example.timetableapp.presentation.screens.shared_components.text.BlackFont30SP
-import com.example.timetableapp.presentation.screens.shared_components.text.WhiteFont26SP
 import com.example.timetableapp.presentation.screens.shared_components.text.WhiteFontTitle
 import com.example.timetableapp.ui.theme.MainBlue
 
 @Composable
 fun HomeScreenTeacher(
     onPersonalTimetableClickListener: () -> Unit,
-    onGroupTimetableClickListener: () -> Unit
+    onGroupTimetableClickListener: () -> Unit,
+    dateItemOnClickListener: () -> Unit
 ) {
 
+    val viewModel = hiltViewModel<HomeScreenTeacherViewModel>()
+    viewModel.getUserProfile()
+    val viewModelState = viewModel.state.collectAsState().value
+
+    when (viewModelState) {
+        is HomeScreenTeacherState.Initial -> {
+
+        }
+
+        is HomeScreenTeacherState.IsLoading -> {
+            ProgressIndicator()
+        }
+
+        is HomeScreenTeacherState.Result -> {
+            Log.d("PROFILE", viewModelState.teacherProfile.teacherName)
+            MainContent(
+                onPersonalTimetableClickListener,
+                onGroupTimetableClickListener,
+                dateItemOnClickListener,
+                viewModelState.teacherProfile
+            )
+        }
+    }
+}
+
+@Composable
+private fun MainContent(
+    onPersonalTimetableClickListener: () -> Unit,
+    onGroupTimetableClickListener: () -> Unit,
+    dateItemOnClickListener: () -> Unit,
+    teacherProfile: UserProfile.Teacher
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -48,19 +85,25 @@ fun HomeScreenTeacher(
             Box(
                 modifier = Modifier.weight(1f)
             ) {
-                HeadContent()
+                HeadContent(teacherProfile)
             }
             Box(
                 modifier = Modifier.weight(4f)
             ) {
-                MainContent(onPersonalTimetableClickListener, onGroupTimetableClickListener)
+                BodyContent(
+                    onPersonalTimetableClickListener,
+                    onGroupTimetableClickListener,
+                    dateItemOnClickListener
+                )
             }
         }
     }
 }
 
 @Composable
-private fun HeadContent() {
+private fun HeadContent(
+    teacherProfile: UserProfile.Teacher
+) {
     Row(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -73,8 +116,9 @@ private fun HeadContent() {
             Column(
                 Modifier.padding(start = 30.dp)
             ) {
-                WhiteFontTitle(text = "\uD83C\uDF03 Доброй ночи,")
-                WhiteFontTitle(text = "Бебурах М.А.")
+                //🌃
+                WhiteFontTitle(text = "Доброй ночи,")
+                WhiteFontTitle(text = "${teacherProfile.teacherName}")
             }
         }
         Box(
@@ -97,9 +141,10 @@ private fun HeadContent() {
 }
 
 @Composable
-private fun MainContent(
+private fun BodyContent(
     onPersonalTimetableClickListener: () -> Unit,
-    onGroupTimetableClickListener: () -> Unit
+    onGroupTimetableClickListener: () -> Unit,
+    dateItemOnClickListener: () -> Unit
 ) {
     BackgroundCard {
         SpacerHeight20dp()
@@ -111,7 +156,9 @@ private fun MainContent(
                 end = 12.dp
             )
         )
-        DateLazyRow()
+        DateLazyRow() {
+            dateItemOnClickListener()
+        }
         SpacerHeight20dp()
 
 
