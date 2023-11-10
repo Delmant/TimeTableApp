@@ -1,12 +1,16 @@
 package com.example.timetableapp.domain.timetable.repository
 
+import com.example.timetableapp.domain.timetable.model.Groups
+import com.example.timetableapp.domain.timetable.model.Teachers
+import kotlinx.coroutines.flow.Flow
+
 interface TimetableRepository {
 
-    fun getGroups()
+    fun getGroups(): Flow<Groups>
 
-    fun getTeachers()
+    fun getTeachers(): Flow<Teachers>
 
-    fun getTimetableGroup()
+    suspend fun getTimetableGroup()
 
-    fun getTimetableTeacher()
+    suspend fun getTimetableTeacher()
 }
