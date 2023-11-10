@@ -1,11 +1,12 @@
 package com.example.timetableapp.domain.user_profile.repository
 
 import com.example.timetableapp.domain.user_profile.model.UserProfile
+import kotlinx.coroutines.flow.Flow
 
 interface UserProfileRepository {
-    fun getUserProfile(): UserProfile
+    fun getUserProfile(): Flow<UserProfile>
 
-    fun setupTeacherProfile(teacherProfile: UserProfile.Teacher)
+    suspend fun setupTeacherProfile(teacherProfile: UserProfile.Teacher)
 
-    fun setupStudentProfile(studentProfile: UserProfile.Student)
+    suspend fun setupStudentProfile(studentProfile: UserProfile.Student)
 }
