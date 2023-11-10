@@ -23,7 +23,8 @@ import com.example.timetableapp.presentation.screens.timetable.components.Custom
 
 @Composable
 fun GroupAndDateSelectionScreen(
-    showTimetableClickListener: () -> Unit
+    showTimetableClickListener: () -> Unit,
+    onBackPressClickListener: () -> Unit
 ) {
 
     Column(
@@ -37,7 +38,7 @@ fun GroupAndDateSelectionScreen(
                 .fillMaxWidth(),
             contentAlignment = Alignment.TopCenter
         ) {
-            CustomTopAppBar(onBackPressClickListener = { /*TODO*/ }) {
+            CustomTopAppBar(onBackPressClickListener = { onBackPressClickListener() }) {
                 WhiteFont26SP(text = "Выбор расписания")
             }
         }
@@ -68,8 +69,17 @@ fun GroupAndDateSelectionScreen(
                         start = 12.dp,
                         end = 12.dp,
                         bottom = 12.dp
+                    ),
+                    listOf(
+                        "1-FGF",
+                        "2-QGT",
+                        "3-QRG",
+                        "4-GCS",
+                        "5-VXS"
                     )
-                )
+                ) {
+
+                }
                 SpacerHeight20dp()
                 BlackFont30SP(
                     text = "Выберите дату", paddingValues = PaddingValues(
@@ -83,8 +93,17 @@ fun GroupAndDateSelectionScreen(
                         start = 12.dp,
                         end = 12.dp,
                         bottom = 12.dp
+                    ),
+                    listOf(
+                        "1-FGF",
+                        "2-QGT",
+                        "3-QRG",
+                        "4-GCS",
+                        "5-VXS"
                     )
-                )
+                ) {
+
+                }
                 SpacerHeight20dp()
 
             }
