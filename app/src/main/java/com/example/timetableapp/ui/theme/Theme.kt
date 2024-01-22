@@ -18,9 +18,9 @@ import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Color(0xFF171717),
-    onPrimary = Color.White,
-    secondary = Color(0xFF0174F3),
+    primary = MainBlue,
+    onPrimary = MainBlue,
+    secondary = Color.White,
     onSecondary = Color(0xFFA3A3A3),
     tertiary = Pink80,
     background = Color(0xFF171717),
@@ -29,22 +29,12 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Color.White,
-    onPrimary = Color.Black,
-    secondary = Color(0xFF0174F3),
+    primary = MainBlue,
+    onPrimary = Color(0xFF0174F3),
+    secondary = Color.Black,
     onSecondary = Color(0xFFA3A3A3),
     tertiary = Pink80,
     background = Color.White,
-//    primary = Color.Black,
-//    secondary = PurpleGrey40,
-//    tertiary = Pink40,
-//    background = Color(0xFFB9118F),
-//    surface = Color(0xFF2B0320),
-//    onPrimary = Color.White,
-//    onSecondary = Color.White,
-//    onTertiary = Color.White,
-//    onBackground = Color(0xFF1C1B1F),
-//    onSurface = Color(0xFF1C1B1F),
 
 )
 
@@ -72,8 +62,6 @@ fun TimeTableAppTheme(
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }
-
-
 
     MaterialTheme(
         colorScheme = colorScheme,

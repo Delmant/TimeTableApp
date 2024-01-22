@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class UserProfileWrapModel(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     val id: Int = 0,
     val content: String
 )

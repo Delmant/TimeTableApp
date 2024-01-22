@@ -12,7 +12,7 @@ import com.example.timetableapp.presentation.screens.choose.student.ChooseStuden
 import com.example.timetableapp.presentation.screens.choose.teacher.ChooseTeacherScreen
 import com.example.timetableapp.presentation.screens.DateSelectionScreen
 import com.example.timetableapp.presentation.screens.GroupAndDateSelectionScreen
-import com.example.timetableapp.presentation.screens.home.HomeScreenStudent
+import com.example.timetableapp.presentation.screens.home.student.HomeScreenStudent
 import com.example.timetableapp.presentation.screens.home.teacher.HomeScreenTeacher
 import com.example.timetableapp.presentation.screens.shared_components.ProgressIndicator
 import com.example.timetableapp.presentation.screens.timetable.TimetableScreen
@@ -88,12 +88,21 @@ fun NavigationHandler() {
             HomeScreenTeacher(
                 onPersonalTimetableClickListener = { navigationState.navigateTo(Screen.DateSelectionScreen.route) },
                 onGroupTimetableClickListener = { navigationState.navigateTo(Screen.GroupAndDateSelectionScreen.route) },
-                dateItemOnClickListener = { navigationState.navigateTo(Screen.TimetableScreen.route) })
+                dateItemOnClickListener = { navigationState.navigateTo(Screen.TimetableScreen.route) },
+                navigateToChooseScreen = {
+                    navigationState.navigateToHome(Screen.WelcomeScreen.route)
+                })
         },
         homeScreenStudentContent = {
             HomeScreenStudent(
                 onTimetableByDateClickListener = {},
-                onTimetableTodayClickListener = {}
+                onTimetableTodayClickListener = {},
+                navigateToChooseScreen = {
+                    navigationState.navigateToHome(Screen.WelcomeScreen.route)
+                },
+                onDateItemClickListener = {
+
+                }
             )
         },
         groupAndDateSelectionContent = {

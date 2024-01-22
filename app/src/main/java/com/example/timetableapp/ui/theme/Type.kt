@@ -31,6 +31,12 @@ val Typography = Typography(
         fontSize = 32.sp,
         letterSpacing = 0.5.sp,
         color = Color(0xFF0174F3)
+    ),
+    titleSmall = TextStyle(
+        fontFamily = FontFamily(Font(R.font.lack_regular)),
+        fontSize = 16.sp,
+        letterSpacing = 0.5.sp,
+        color = Color(0xFF0174F3)
     )
 
 )

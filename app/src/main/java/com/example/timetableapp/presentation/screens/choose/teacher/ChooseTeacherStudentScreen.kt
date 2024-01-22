@@ -51,6 +51,10 @@ fun ChooseTeacherScreen(
             ProgressIndicator()
         }
 
+        is ChooseTeacherScreenState.Error -> {
+
+        }
+
         is ChooseTeacherScreenState.Result -> {
             MainContent(
                 context,

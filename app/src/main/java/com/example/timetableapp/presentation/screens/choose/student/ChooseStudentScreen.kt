@@ -51,6 +51,10 @@ fun ChooseStudentScreen(
             LoadingContent()
         }
 
+        is ChooseStudentScreenState.Error -> {
+
+        }
+
         is ChooseStudentScreenState.Result -> {
 
             MainContent(

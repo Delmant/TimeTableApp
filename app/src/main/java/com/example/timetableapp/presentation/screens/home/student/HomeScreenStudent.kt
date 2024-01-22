@@ -1,5 +1,6 @@
-package com.example.timetableapp.presentation.screens.home.teacher
+package com.example.timetableapp.presentation.screens.home.student
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -32,56 +33,56 @@ import com.example.timetableapp.presentation.screens.shared_components.text.Whit
 import com.example.timetableapp.ui.theme.MainBlue
 
 @Composable
-fun HomeScreenTeacher(
-    onPersonalTimetableClickListener: () -> Unit,
-    onGroupTimetableClickListener: () -> Unit,
-    dateItemOnClickListener: () -> Unit,
+fun HomeScreenStudent(
+    onTimetableByDateClickListener: () -> Unit,
+    onTimetableTodayClickListener: () -> Unit,
+    onDateItemClickListener: () -> Unit,
     navigateToChooseScreen: () -> Unit
 ) {
-
-    val viewModel = hiltViewModel<HomeScreenTeacherViewModel>()
+    val viewModel = hiltViewModel<HomeScreenStudentViewModel>()
     viewModel.getUserProfile()
     val viewModelState = viewModel.state.collectAsState().value
 
     when (viewModelState) {
-        is HomeScreenTeacherState.Initial -> {
+        is HomeScreenStudentState.Initial -> {
 
         }
 
-        is HomeScreenTeacherState.IsLoading -> {
+        is HomeScreenStudentState.IsLoading -> {
             ProgressIndicator()
         }
 
-        is HomeScreenTeacherState.ProfileResetAndNavigateToHome  -> {
+        is HomeScreenStudentState.ProfileResetAndNavigateToHome -> {
             navigateToChooseScreen()
         }
 
-        is HomeScreenTeacherState.Error -> {
+        is HomeScreenStudentState.Error -> {
 
         }
 
-        is HomeScreenTeacherState.Result -> {
+        is HomeScreenStudentState.Result -> {
+            Log.d("USER_PROFILE", viewModelState.studentProfile.studentGroup)
             MainContent(
-                onPersonalTimetableClickListener,
-                onGroupTimetableClickListener,
-                dateItemOnClickListener,
-                viewModelState.teacherProfile,
+                onTimetableTodayClickListener,
+                onTimetableByDateClickListener,
+                navigateToChooseScreen,
                 viewModel,
-                navigateToChooseScreen
+                viewModelState.studentProfile,
+                onDateItemClickListener
             )
         }
-
     }
+
 }
 
 @Composable
 private fun MainContent(
-    onPersonalTimetableClickListener: () -> Unit,
-    onGroupTimetableClickListener: () -> Unit,
-    dateItemOnClickListener: () -> Unit,
-    teacherProfile: UserProfile.Teacher,
-    viewModel: HomeScreenTeacherViewModel,
-    navigateToChooseScreen: () -> Unit
+    onTimetableTodayClickListener: () -> Unit,
+    onTimetableByDateClickListener: () -> Unit,
+    navigateToChooseScreen: () -> Unit,
+    viewModel: HomeScreenStudentViewModel,
+    studentProfile: UserProfile.Student,
+    onDateItemClickListener: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -94,21 +95,20 @@ private fun MainContent(
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.Center
         ) {
-
             Box(
                 modifier = Modifier.weight(1f)
             ) {
-                HeadContent(teacherProfile)
+                HeadContent(studentProfile)
             }
             Box(
                 modifier = Modifier.weight(4f)
             ) {
                 BodyContent(
-                    onPersonalTimetableClickListener,
-                    onGroupTimetableClickListener,
-                    dateItemOnClickListener,
+                    onTimetableTodayClickListener,
+                    onTimetableByDateClickListener,
                     viewModel,
-                    navigateToChooseScreen
+                    navigateToChooseScreen,
+                    onDateItemClickListener
                 )
             }
         }
@@ -117,7 +117,7 @@ private fun MainContent(
 
 @Composable
 private fun HeadContent(
-    teacherProfile: UserProfile.Teacher
+    studentProfile: UserProfile.Student
 ) {
     Row(
         modifier = Modifier.fillMaxWidth()
@@ -133,7 +133,7 @@ private fun HeadContent(
             ) {
                 //🌃
                 WhiteFontTitle(text = "Доброй ночи,")
-                WhiteFontTitle(text = teacherProfile.teacherName)
+                WhiteFontTitle(text = studentProfile.studentGroup)
             }
         }
         Box(
@@ -157,13 +157,13 @@ private fun HeadContent(
 
 @Composable
 private fun BodyContent(
-    onPersonalTimetableClickListener: () -> Unit,
-    onGroupTimetableClickListener: () -> Unit,
+    onTimetableTodayClickListener: () -> Unit,
+    onTimetableByDateClickListener: () -> Unit,
+    viewModel: HomeScreenStudentViewModel,
     dateItemOnClickListener: () -> Unit,
-    viewModel: HomeScreenTeacherViewModel,
     navigateToChooseScreen: () -> Unit
 ) {
-    BackgroundCard {
+    BackgroundCard() {
         SpacerHeight20dp()
         SpacerHeight20dp()
         BlackFont30SP(
@@ -189,16 +189,16 @@ private fun BodyContent(
             )
         )
         StandardButton(
-            text = "Своё расписание",
-            paddingValues = PaddingValues(Constants.BASE_PADDING_12_DP)
+            text = "Расписание сегодня",
+            paddingValues = PaddingValues(12.dp)
         ) {
-            onPersonalTimetableClickListener()
+            onTimetableTodayClickListener()
         }
         StandardButton(
-            text = "Расписание группы",
-            paddingValues = PaddingValues(Constants.BASE_PADDING_12_DP)
+            text = "Расписание по дате",
+            paddingValues = PaddingValues(12.dp)
         ) {
-            onGroupTimetableClickListener()
+            onTimetableByDateClickListener()
         }
 
         SpacerHeight20dp()
@@ -209,7 +209,6 @@ private fun BodyContent(
                 end = Constants.BASE_PADDING_12_DP
             )
         )
-
         StandardButton(
             text = "Сброс профиля",
             paddingValues = PaddingValues(Constants.BASE_PADDING_12_DP)
@@ -217,8 +216,5 @@ private fun BodyContent(
             viewModel.resetUserProfile()
             navigateToChooseScreen()
         }
-
     }
 }
-
-

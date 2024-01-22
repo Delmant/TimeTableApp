@@ -1,6 +1,7 @@
 package com.example.timetableapp.data.repository_impl
 
 import com.example.timetableapp.data.remote_data_source.TimetableRemoteDataSource
+import com.example.timetableapp.domain.reaction.Reaction
 import com.example.timetableapp.domain.timetable.model.Groups
 import com.example.timetableapp.domain.timetable.model.Teachers
 import com.example.timetableapp.domain.timetable.repository.TimetableRepository
@@ -12,18 +13,40 @@ import javax.inject.Inject
 
 class TimetableRepositoryImpl @Inject constructor(
     private val timetableRemoteDataSource: TimetableRemoteDataSource
-): TimetableRepository {
-    override fun getGroups(): Flow<Groups> = flow {
-        delay(5000)
-        timetableRemoteDataSource.getGroups().collect{
-            emit(it)
+) : TimetableRepository {
+    override fun getGroups(): Flow<Reaction<Groups>> = flow {
+        try {
+            timetableRemoteDataSource.getGroups().collect {
+                emit(
+                    Reaction.Success(
+                        data = it
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            emit(
+                Reaction.Error(
+                    exception = e
+                )
+            )
         }
     }
 
-    override fun getTeachers(): Flow<Teachers> = flow {
-        delay(5000)
-        timetableRemoteDataSource.getTeachers().collect {
-            emit(it)
+    override fun getTeachers(): Flow<Reaction<Teachers>> = flow {
+        try {
+            timetableRemoteDataSource.getTeachers().collect {
+                emit(
+                    Reaction.Success(
+                        data = it
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            emit(
+                Reaction.Error(
+                    exception = e
+                )
+            )
         }
     }
 

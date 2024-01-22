@@ -14,7 +14,7 @@ fun NavGraphBuilder.teacherHomeScreenNavGraph(
 ) {
     navigation(
         startDestination = Screen.HomeScreenTeacher.route,
-        route = "teacher_home_screen_r"
+        route = "teacher_home_screen_r5f"
     ) {
         composable(Screen.HomeScreenTeacher.route) {
             homeScreenTeacherContent()

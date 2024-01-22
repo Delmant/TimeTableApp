@@ -2,6 +2,7 @@ package com.example.timetableapp.presentation.screens.choose.teacher
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.timetableapp.domain.reaction.Reaction
 import com.example.timetableapp.domain.timetable.use_case.GetTeachersUseCase
 import com.example.timetableapp.domain.user_profile.model.UserProfile
 import com.example.timetableapp.domain.user_profile.use_case.SetupTeacherProfileUseCase
@@ -31,9 +32,18 @@ class ChooseTeacherViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             _state.value = ChooseTeacherScreenState.IsLoading
             getTeachersUseCase.invoke().collect {
-                _state.value = ChooseTeacherScreenState.Result(
-                    teachers = it
-                )
+               when(it) {
+                   is Reaction.Error -> {
+                       _state.value = ChooseTeacherScreenState.Error(
+                           exception = it.exception
+                       )
+                   }
+                   is Reaction.Success -> {
+                       _state.value = ChooseTeacherScreenState.Result(
+                           teachers = it.data
+                       )
+                   }
+               }
             }
         }
     }
